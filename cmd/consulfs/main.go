@@ -37,7 +37,7 @@ func init() {
 	flag.Usage = func() {
 		fmt.Fprintf(
 			os.Stderr,
-			"usage: %s [flags] [server_addr] mount_point\n\nAvailable flags:\n",
+			"usage: %s [flags] [server_addr]  mount_point\n\nAvailable flags:\n",
 			filepath.Base(os.Args[0]),
 		)
 		flag.PrintDefaults()
@@ -55,6 +55,8 @@ func main() {
 	root := flag.String("root", "", "path in Consul to the root of the filesystem")
 	timeout := flag.String("timeout", defaultTimeout, "timeout for Consul requests")
 	uid := flag.Int("uid", os.Getuid(), "set the UID that should own all files")
+        token := flag.String("token", "", "token for consul k/v access")
+
 	flag.Parse()
 
 	logger := logrus.New()
@@ -69,6 +71,7 @@ func main() {
 		mountPoint = flag.Arg(0)
 	case 2:
 		consulConfig.Address = flag.Arg(0)
+		consulConfig.Token = *token
 		mountPoint = flag.Arg(1)
 	default:
 		flag.Usage()
