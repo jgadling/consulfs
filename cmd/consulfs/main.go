@@ -9,7 +9,7 @@
 //     $ consulfs http://consul0.mydomain.com:5678 /mnt/kv
 //
 // For more information about the file system itself, refer to the package documentation
-// in the main "github.com/bwester/consulfs" package.
+// in the main "github.com/jgadling/consulfs" package.
 package main
 
 import (
@@ -27,7 +27,7 @@ import (
 	consul "github.com/hashicorp/consul/api"
 	"golang.org/x/net/context"
 
-	"github.com/bwester/consulfs"
+	"github.com/jgadling/consulfs"
 )
 
 // Default timeout for all requests. 60s is the default for OSXFUSE.
