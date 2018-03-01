@@ -6,3 +6,5 @@ RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build
 FROM ubuntu:bionic
 RUN apt-get update && apt-get install -y fuse curl vim
 COPY --from=build /go/src/github.com/jgadling/consulfs/cmd/consulfs/consulfs /bin/consulfs
+ADD entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
